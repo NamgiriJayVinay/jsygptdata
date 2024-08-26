@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="75dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="271dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/oneui"
+        android:padding="8dp"
+        android:text="Simulator App"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="272dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/oneui"
+        android:text="Test Permissions and Sensors for Privacy Tips"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="363dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.6"
+        android:fontFamily="@font/oneui"
+        android:padding="8dp"
+        android:text="Streamline your workflow by selecting the perfect mode for your needs."
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/oneui"
+        android:text="Select sensors you want to trigger"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <GridLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:foregroundGravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxCamera"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_camera_alt_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Camera"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxMicrophone"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/rounded_adaptive_audio_mic_24"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="Micrphone"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxLocation"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_add_location_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Location"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+    </GridLayout>
+
+
+    <GridLayout
+        android:id="@+id/linearLayout_sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:foregroundGravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkboxGallery"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_insert_photo_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Gallery"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxSms"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_chat_bubble_24"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="SMS"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxPhone"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_call_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Phone"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/linearLayout_thir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:foregroundGravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_sec">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkboxContacts"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/round_contact_page_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Contacts"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxCallLogs"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/call_log_import_export_24"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="Call Logs"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxMusic"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/selectable_card_background"
+            android:button="@null"
+            android:drawableStart="@drawable/baseline_library_music_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/oneui"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Music"
+            android:textColor="@drawable/selectable_card_icon_color"
+            android:textSize="14sp"
+            app:buttonTint="@drawable/selectable_card_icon_color" />
+
+
+    </GridLayout>
+
+    <RadioGroup
+        android:id="@+id/groundTypeRadioGroup"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_thir">
+
+        <RadioButton
+            android:id="@+id/foreground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/cardoutline"
+            android:fontFamily="@font/oneui"
+            android:text="Foreground" />
+
+        <RadioButton
+            android:id="@+id/background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:background="@drawable/cardoutline"
+            android:fontFamily="@font/oneui"
+            android:text="Background" />
+    </RadioGroup>
+
+
+    <LinearLayout
+        android:layout_width="405dp"
+        android:layout_height="224dp"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groundTypeRadioGroup">
+
+        <!-- Duration SeekBar and Label -->
+        <TextView
+            android:id="@+id/durationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration (seconds)"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seekBarDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:max="55" /> <!-- Max set to 55 to allow duration from 5 to 60 seconds -->
+
+        <TextView
+            android:id="@+id/durationValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" /> <!-- Default duration set to 5 seconds -->
+
+        <!-- Count SeekBar and Label -->
+        <TextView
+            android:id="@+id/countLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Count"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seekBarCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="40" /> <!-- Set max as per your requirement -->
+
+        <TextView
+            android:id="@+id/countValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2" /> <!-- Default count set to 0 -->
+
+        <!-- Gap SeekBar and Label -->
+        <TextView
+            android:id="@+id/gapLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gap (seconds)"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seekBarGap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="57" /> <!-- Max set to 57 to allow gap from 3 to 60 seconds -->
+
+        <TextView
+            android:id="@+id/gapValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" /> <!-- Default gap set to 3 seconds -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/oneui"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/stopButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stop_button_background"
+            android:fontFamily="@font/oneui"
+            android:text="Stop"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="#006FFD"
+            android:fontFamily="@font/oneui"
+            android:text="Start"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+package com.example.parentapp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_OVERLAY_PERMISSION = 1234;
+
+    private EditText durationInput;
+    private EditText countInput;
+    private EditText gapInput;
+    private AppCompatCheckBox cameraCheckBox;
+    private CheckBox microphoneCheckBox;
+    private CheckBox locationCheckBox;
+    private CheckBox galleryCheckBox;
+    private CheckBox smsCheckBox;
+    private CheckBox phoneCallCheckBox;
+    private CheckBox callLogsCheckBox;
+    private CheckBox contactsCheckBox;
+    private CheckBox musicCheckBox;
+    private RadioGroup groundTypeRadioGroup;
+    private Handler handler;
+
+    // New variables for the SeekBars and TextViews
+    private SeekBar seekBarDuration;
+    private SeekBar seekBarCount;
+    private SeekBar seekBarGap;
+    private TextView durationValue;
+    private TextView countValue;
+    private TextView gapValue;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize views
+        Button startButton = findViewById(R.id.startButton);
+        Button stopButton = findViewById(R.id.stopButton);
+
+        // Initialize SeekBars and TextViews
+        seekBarDuration = findViewById(R.id.seekBarDuration);
+        seekBarCount = findViewById(R.id.seekBarCount);
+        seekBarGap = findViewById(R.id.seekBarGap);
+        durationValue = findViewById(R.id.durationValue);
+        countValue = findViewById(R.id.countValue);
+        gapValue = findViewById(R.id.gapValue);
+
+        // Initialize checkboxes
+        cameraCheckBox = findViewById(R.id.checkBoxCamera);
+        microphoneCheckBox = findViewById(R.id.checkBoxMicrophone);
+        locationCheckBox = findViewById(R.id.checkBoxLocation);
+        galleryCheckBox = findViewById(R.id.checkboxGallery);
+        smsCheckBox = findViewById(R.id.checkBoxSms);
+        phoneCallCheckBox = findViewById(R.id.checkBoxPhone);
+        callLogsCheckBox = findViewById(R.id.checkBoxCallLogs);
+        contactsCheckBox = findViewById(R.id.checkboxContacts);
+        musicCheckBox = findViewById(R.id.checkBoxMusic);
+        groundTypeRadioGroup = findViewById(R.id.groundTypeRadioGroup);
+
+        handler = new Handler();
+
+        // Check for overlay permission
+        checkOverlayPermission();
+
+        // Set up SeekBars
+        setupSeekBars();
+
+        // Set up button click listeners
+        startButton.setOnClickListener(v -> startSensorService());
+        stopButton.setOnClickListener(v -> stopSensorService());
+    }
+
+    private void checkOverlayPermission() {
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            startActivityForResult(intent, REQUEST_OVERLAY_PERMISSION);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_OVERLAY_PERMISSION) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "Overlay permission required", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void setupSeekBars() {
+        // Set minimum values
+        seekBarDuration.setMin(5);  // Minimum value of 5 seconds for duration
+        seekBarCount.setMin(2);     // Minimum value of 1 for count
+        seekBarGap.setMin(5);       // Minimum value of 3 seconds for gap
+
+        int durationStepSize = 5;
+        // Duration SeekBar listener
+        seekBarDuration.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progress = ((int)Math.round(progress/durationStepSize))*durationStepSize;
+                seekBar.setProgress(progress);
+                durationValue.setText(String.valueOf(progress)); // Adding 5 since the minimum is 5
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        int countStepSize = 2;
+        // Count SeekBar listener
+        seekBarCount.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progress = ((int)Math.round(progress/countStepSize))*countStepSize;
+                seekBar.setProgress(progress);
+                countValue.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        int gapStepSize = 5;
+        // Gap SeekBar listener with lines/spikes for odd numbers
+        seekBarGap.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progress = ((int)Math.round(progress/gapStepSize))*gapStepSize;
+                seekBar.setProgress(progress);
+                gapValue.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+    }
+
+    private void startSensorService() {
+        final int duration = seekBarDuration.getProgress() + 5;  // Adding 5 to match the minimum value
+        final int count = seekBarCount.getProgress();
+        final int gap = seekBarGap.getProgress() + 3;  // Adding 3 to match the minimum value
+
+        if (duration <= 0 || count <= 0 || gap < 0) {
+            Toast.makeText(this, "Invalid Timer input values", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int selectedGroundType = groundTypeRadioGroup.getCheckedRadioButtonId();
+        boolean isBackground = selectedGroundType == R.id.background;
+
+        for (int i = 0; i < count; i++) {
+            final int delay = i * (duration + gap) * 1000;
+
+            handler.postDelayed(() -> {
+                if (cameraCheckBox.isChecked()) startSensor("CAMERA", duration, isBackground);
+                if (microphoneCheckBox.isChecked()) startSensor("MICROPHONE", duration, isBackground);
+                if (locationCheckBox.isChecked()) startSensor("LOCATION", duration, isBackground);
+                if (galleryCheckBox.isChecked()) startSensor("GALLERY", duration, isBackground);
+                if (smsCheckBox.isChecked()) startSensor("SMS", duration, isBackground);
+                if (phoneCallCheckBox.isChecked()) startSensor("PHONE", duration, isBackground);
+                if (callLogsCheckBox.isChecked()) startSensor("CALL", duration, isBackground);
+                if (contactsCheckBox.isChecked()) startSensor("CONTACTS", duration, isBackground);
+                if (musicCheckBox.isChecked()) startSensor("MUSIC", duration, isBackground);
+                openSensorsApp();
+            }, delay);
+
+            handler.postDelayed(() -> {
+                stopSensorService();
+            }, delay + (duration * 1000));
+        }
+
+        if (Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(MainActivity.this, FloatingWidgetService.class);
+            intent.putExtra("duration", duration);
+            intent.putExtra("count", count);
+            intent.putExtra("gap", gap);
+            startService(intent);
+        } else {
+            Intent overlaySettings = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            startActivity(overlaySettings);
+        }
+    }
+
+    private void startSensor(String sensorType, int duration, boolean isBackground) {
+        Intent intent = new Intent();
+        intent.setAction("com.example.sensors_app.START_" + sensorType);
+        intent.setPackage("com.example.sensors_app");
+        intent.putExtra("DURATION", duration);
+        intent.putExtra("isBackground", isBackground);
+        sendBroadcast(intent);
+        Log.d("SENT", "Broadcast sent with " + sensorType);
+    }
+
+    private void stopSensor(String sensorType) {
+        Intent intent = new Intent();
+        intent.setAction("com.example.sensors_app.STOP_" + sensorType);
+        intent.setPackage("com.example.sensors_app");
+        sendBroadcast(intent);
+    }
+
+    private void openSensorsApp() {
+        Intent intent = new Intent();
+        intent.setClassName("com.example.sensors_app", "com.example.sensors_app.MainActivity");
+        startActivity(intent);
+    }
+
+    private void stopSensorService() {
+        if (cameraCheckBox.isChecked()) stopSensor("CAMERA");
+        if (microphoneCheckBox.isChecked()) stopSensor("MICROPHONE");
+        if (locationCheckBox.isChecked()) stopSensor("LOCATION");
+        if (galleryCheckBox.isChecked()) stopSensor("GALLERY");
+        if (smsCheckBox.isChecked()) stopSensor("SMS");
+        if (phoneCallCheckBox.isChecked()) stopSensor("PHONE");
+        if (callLogsCheckBox.isChecked()) stopSensor("CALL");
+        if (contactsCheckBox.isChecked()) stopSensor("CONTACTS");
+        if (musicCheckBox.isChecked()) stopSensor("MUSIC");
+        handler.removeCallbacksAndMessages(null);
+        stopService(new Intent(MainActivity.this, FloatingWidgetService.class));
+    }
+}
