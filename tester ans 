@@ -206,3 +206,132 @@ public class CameraService extends Service {
         }
     }
 }
+
+
+2222
+
+
+package com.example.sensors_app_seoulbites;
+
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.Service;
+import android.content.Intent;
+import android.media.MediaRecorder;
+import android.os.Build;
+import android.os.Handler;
+import android.os.IBinder;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+
+import androidx.core.app.NotificationCompat;
+
+import java.io.IOException;
+
+public class MicrophoneService extends Service {
+
+    private static final String TAG = "MicrophoneService";
+    private static final String CHANNEL_ID = "MicrophoneServiceChannel";
+    private MediaRecorder mediaRecorder;
+    private WindowManager windowManager;
+    private View microphonePreviewView;
+    private Handler handler = new Handler();
+    private Runnable stopRunnable;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, "MicrophoneService Created");
+
+        createNotificationChannel();
+
+        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        microphonePreviewView = LayoutInflater.from(this).inflate(R.layout.microphone_preview, null);
+
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                android.graphics.PixelFormat.TRANSLUCENT
+        );
+        params.gravity = Gravity.TOP | Gravity.LEFT;
+        windowManager.addView(microphonePreviewView, params);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Microphone Service Running")
+                .setContentText("Recording audio in the background")
+                .setSmallIcon(android.R.drawable.ic_btn_speak_now)
+                .build();
+
+        startForeground(8, notification);
+
+        // Initialize MediaRecorder
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(getExternalCacheDir().getAbsolutePath() + "/mic_recording.3gp");
+
+        try {
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (IOException e) {
+            Log.e(TAG, "Error preparing MediaRecorder: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "MicrophoneService Started");
+
+        int duration = intent.getIntExtra("DURATION", 0);
+        scheduleStop(duration);
+
+        return START_NOT_STICKY;
+    }
+
+    private void scheduleStop(int duration) {
+        if (stopRunnable != null) {
+            handler.removeCallbacks(stopRunnable);
+        }
+        stopRunnable = () -> stopSelf();
+        handler.postDelayed(stopRunnable, duration * 1000);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "MicrophoneService Destroyed");
+
+        if (mediaRecorder != null) {
+            mediaRecorder.stop();
+            mediaRecorder.release();
+            mediaRecorder = null;
+            windowManager.removeView(microphonePreviewView);
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Microphone Service Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(serviceChannel);
+            }
+        }
+    }
+}
