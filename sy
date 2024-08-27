@@ -1,50 +1,49 @@
-<CheckBox
-    android:id="@+id/checkBoxSelectAll"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Select All" />
+
+public class SensorReceiver extends BroadcastReceiver {
+    private static final String TAG = "SensorReceiver";
 
 
-private CheckBox selectAllCheckBox;
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
+        int duration = intent.getIntExtra("DURATION", 0);
+        boolean isBackground = intent.getBooleanExtra("isBackground", false); // Default to false if not found
+        SharedPreferences sharedPref = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("isBackground",
+                isBackground);
+        editor.apply();
 
-    // Initialize checkboxes
-    cameraCheckBox = findViewById(R.id.checkBoxCamera);
-    microphoneCheckBox = findViewById(R.id.checkBoxMicrophone);
-    locationCheckBox = findViewById(R.id.checkBoxLocation);
-    galleryCheckBox = findViewById(R.id.checkboxGallery);
-    smsCheckBox = findViewById(R.id.checkBoxSms);
-    phoneCallCheckBox = findViewById(R.id.checkBoxPhone);
-    callLogsCheckBox = findViewById(R.id.checkBoxCallLogs);
-    contactsCheckBox = findViewById(R.id.checkboxContacts);
-    musicCheckBox = findViewById(R.id.checkBoxMusic);
 
-    // Initialize Select All checkbox
-    selectAllCheckBox = findViewById(R.id.checkBoxSelectAll);
+       if (isBackground){
+           Intent i = new Intent("com.example.move");
+           context.sendBroadcast(i);
+       }
 
-    // Set a listener for the Select All checkbox
-    selectAllCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-        setAllCheckBoxes(isChecked);
-    });
+        boolean isForeground = intent.getBooleanExtra("IS_FOREGROUND", true);
 
-    // Set up button click listeners
-    startButton.setOnClickListener(v -> startSensorService());
-    stopButton.setOnClickListener(v -> stopSensorService());
-}
+        Log.d(TAG,"action is "+action);
 
-// Function to set all checkboxes to either checked or unchecked
-private void setAllCheckBoxes(boolean isChecked) {
-    cameraCheckBox.setChecked(isChecked);
-    microphoneCheckBox.setChecked(isChecked);
-    locationCheckBox.setChecked(isChecked);
-    galleryCheckBox.setChecked(isChecked);
-    smsCheckBox.setChecked(isChecked);
-    phoneCallCheckBox.setChecked(isChecked);
-    callLogsCheckBox.setChecked(isChecked);
-    contactsCheckBox.setChecked(isChecked);
-    musicCheckBox.setChecked(isChecked);
-}
+
+        if (action != null) {
+            switch (action) {
+                case "com.example.sensors_app.START_CAMERA":
+                    if (isBackground){
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startCameraService(context,duration,isForeground);
+                            }
+                        },2000);
+                    }
+                    else {
+                        startCameraService(context,duration,isForeground);
+                    }
+
+                    break;
+
+                case "com.example.sensors_app.STOP_CAMERA":
+                    stopCameraService(context);
+                    break;
+}}}
