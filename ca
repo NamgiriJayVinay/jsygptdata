@@ -160,4 +160,26 @@ public class CameraService extends Service {
             }
         }
     }
+666
+
+@Override
+public void onDestroy() {
+    super.onDestroy();
+    releaseCameraAndPreview();
+}
+
+private void releaseCameraAndPreview() {
+    if (camera != null) {
+        camera.stopPreview();
+        camera.release();
+        camera = null; // Ensure the camera is null after releasing
+    }
+    if (cameraPreviewView != null && windowManager != null) {
+        windowManager.removeView(cameraPreviewView);
+    }
+}
+
+@Override
+public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+    releaseCameraAndPreview();
 }
